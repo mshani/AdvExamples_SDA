@@ -19,7 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvDictionaries", "Dictiona
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvGarage", "AdvGarage\AdvGarage.csproj", "{F26E962F-E0DA-4E22-9A86-8CAF3AEE4D5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvGenerics", "AdvGenerics\AdvGenerics.csproj", "{09213F12-2F84-4002-BA09-549918365D79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvGenerics", "AdvGenerics\AdvGenerics.csproj", "{09213F12-2F84-4002-BA09-549918365D79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORM-VarLinq", "ORM-VarLinq\ORM-VarLinq.csproj", "{F25890AD-212E-4099-BD12-91D72D460138}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORMSchool", "ORMSchool\ORMSchool.csproj", "{24E6E51A-7250-45D6-B461-98D5524E5AB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,14 @@ Global
 		{09213F12-2F84-4002-BA09-549918365D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09213F12-2F84-4002-BA09-549918365D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09213F12-2F84-4002-BA09-549918365D79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F25890AD-212E-4099-BD12-91D72D460138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F25890AD-212E-4099-BD12-91D72D460138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F25890AD-212E-4099-BD12-91D72D460138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F25890AD-212E-4099-BD12-91D72D460138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24E6E51A-7250-45D6-B461-98D5524E5AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24E6E51A-7250-45D6-B461-98D5524E5AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24E6E51A-7250-45D6-B461-98D5524E5AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24E6E51A-7250-45D6-B461-98D5524E5AB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
