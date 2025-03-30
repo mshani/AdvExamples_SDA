@@ -11,7 +11,7 @@ namespace ORMCheckin.Models
         [StringLength(100)]
         public string LastName { get; set; }
         [Required]
-        public DateTime IssuedDate { get; set; }
+        public DateTime? IssuedDate { get; set; }
         public DateTime? DeactivationDate { get; set; } = null;
     }
 }

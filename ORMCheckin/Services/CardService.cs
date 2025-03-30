@@ -52,26 +52,24 @@ namespace ORMCheckin.Services
            return false;
         }
 
-        public bool Update(int id, 
-            string? firstName = null, 
-            string? lastName = null, 
-            DateTime? issuedDate = null,
-            DateTime? deactivationDate = null) {
-            var item = _context.Cards.FirstOrDefault(x => x.Id == id);
+        public Card Update(Card card) {
+            var item = _context.Cards.FirstOrDefault(x => x.Id == card.Id);
             if (item != null) {
-                item.FirstName = string.IsNullOrEmpty(firstName) ? item.FirstName : firstName;
-                item.LastName = lastName ?? item.LastName;
-                item.IssuedDate = issuedDate ?? item.IssuedDate;
-                item.DeactivationDate = deactivationDate ?? item.DeactivationDate;
+                item.FirstName = string.IsNullOrEmpty(card.FirstName) ? item.FirstName : card.FirstName;
+                item.LastName = string.IsNullOrEmpty(card.LastName) ? item.LastName : card.LastName;
+                item.IssuedDate = card.IssuedDate ?? item.IssuedDate;
+                item.DeactivationDate = card.DeactivationDate ?? item.DeactivationDate;
                 _context.Update(item);
                 var result = _context.SaveChanges();
-                return result > 0 ? true : false;
+                return item;
             }
-            return false;
+            return null;
         }
 
-        public void Print(Card card) {        
-            Console.WriteLine($"{card.Id} | {card.FirstName} {card.LastName} | {card.IssuedDate.Date} {card.DeactivationDate?.Date}");
+        public void Print(Card card) {
+            if (card != null)
+            { Console.WriteLine($"{card.Id} | {card?.FirstName} {card?.LastName} | {card?.IssuedDate?.Date} {card?.DeactivationDate?.Date}"); 
+            }
         }
 
         public void Print(List<Card> cards) { 
