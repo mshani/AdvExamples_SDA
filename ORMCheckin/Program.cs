@@ -4,6 +4,7 @@ using ORMCheckin.Services;
 Menu.PrintMenu();
 var value = Console.ReadLine();
 var cardService = new CardService();
+var userCheckInService = new UserCheckinService();
 while (!string.Equals(value, "x", StringComparison.CurrentCultureIgnoreCase)){
     switch (value)
     {
@@ -33,6 +34,10 @@ while (!string.Equals(value, "x", StringComparison.CurrentCultureIgnoreCase)){
         case ("5"):
             var cardIdToDelete = Menu.PrintDeleteCardById();
             var deleteResult = cardService.Delete(cardIdToDelete);
+            break;
+        case ("8"):
+            var checkinToUpdate = Menu.PrintUpdateUserCheckIn();
+            var updatedCheckin = userCheckInService.Update(checkinToUpdate);
             break;
         default:
             Console.WriteLine("Invalid option");

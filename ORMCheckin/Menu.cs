@@ -11,7 +11,8 @@ namespace ORMCheckin
             Console.WriteLine("Shtypni 3 per te shtuar nje karte");
             Console.WriteLine("Shtypni 4 per te modifikuar nje karte");
             Console.WriteLine("Shtypni 5 per te fshire nje karte");
-            Console.WriteLine("Shtypni 6 per te afishuar userCheckins sipas userId");
+            Console.WriteLine("-----------------------------------------------------");
+            Console.WriteLine("Shtypni 6 per te afishuar userCheckins sipas cardId");
             Console.WriteLine("Shtypni 7 per te shtuar nje userCheckin");
             Console.WriteLine("Shtypni 8 per te modifikuar nje userCheckin");
             Console.WriteLine("Shtypni 9 per te fshire nje userCheckin");
@@ -90,6 +91,35 @@ namespace ORMCheckin
             var value = Console.ReadLine();
             var id = Int32.Parse(value);
             return id;
+        }
+        public static UserCheckin PrintUpdateUserCheckIn()
+        {
+            var payload = new UserCheckin();
+
+            Console.WriteLine("Jepni Id:");
+            var valueId = Console.ReadLine();
+            if (!Int32.TryParse(valueId, out var id))
+            {
+                throw new Exception("Invalid Id");
+            }
+            payload.Id = id;
+
+            Console.WriteLine("Jepni veprimin:");
+            var action = Console.ReadLine();
+            //TODO check nese veprimi eshte checkin ose checkout, perndryshe error
+            payload.Action = action;
+
+            Console.WriteLine("Jepni timestamp: yyyy/MM/dd hh:mm");
+            var timestampValue = Console.ReadLine();
+            if (!string.IsNullOrEmpty(timestampValue))
+            {
+                if (!DateTime.TryParse(timestampValue, out var timestamp))
+                {
+                    throw new Exception("Invalid date");
+                }
+                payload.Timestamp = timestamp;
+            }
+            return payload;
         }
     }
 }

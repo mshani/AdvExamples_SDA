@@ -16,7 +16,8 @@ namespace ORMCheckin.Models
         public int CardId { get; set; }
         [ForeignKey("CardId")]
         public Card Card { get; set; }
-        public DateTime Timestamp { get; set; }
+        [Required]
+        public DateTime? Timestamp { get; set; }
         [Required]
         [StringLength(50)]
         public string Action { get; set; }
