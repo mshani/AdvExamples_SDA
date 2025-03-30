@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ORMCheckin;
 
@@ -11,9 +12,11 @@ using ORMCheckin;
 namespace ORMCheckin.Migrations
 {
     [DbContext(typeof(CheckinContext))]
-    partial class CheckinContextModelSnapshot : ModelSnapshot
+    [Migration("20250330120347_Create_UserCheckin")]
+    partial class Create_UserCheckin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,17 +84,12 @@ namespace ORMCheckin.Migrations
             modelBuilder.Entity("ORMCheckin.Models.UserCheckin", b =>
                 {
                     b.HasOne("ORMCheckin.Models.Card", "Card")
-                        .WithMany("UserCheckins")
+                        .WithMany()
                         .HasForeignKey("CardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Card");
-                });
-
-            modelBuilder.Entity("ORMCheckin.Models.Card", b =>
-                {
-                    b.Navigation("UserCheckins");
                 });
 #pragma warning restore 612, 618
         }

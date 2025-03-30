@@ -13,5 +13,6 @@ namespace ORMCheckin.Models
         [Required]
         public DateTime? IssuedDate { get; set; }
         public DateTime? DeactivationDate { get; set; } = null;
+        public IEnumerable<UserCheckin> UserCheckins { get; set; }
     }
 }

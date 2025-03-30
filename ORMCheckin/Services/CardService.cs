@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using ORMCheckin.Models;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,9 @@ namespace ORMCheckin.Services
         }
 
         public Card GetById(int id) {
-            var result =  _context.Cards.FirstOrDefault(x => x.Id == id);
+            var result =  _context.Cards
+                          .Include(x => x.UserCheckins)
+                          .FirstOrDefault(x => x.Id == id);
             return result;
         }
 

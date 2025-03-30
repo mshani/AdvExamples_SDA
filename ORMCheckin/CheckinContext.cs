@@ -6,6 +6,7 @@ namespace ORMCheckin
     internal class CheckinContext : DbContext
     {
         public DbSet<Card> Cards { get; set; }
+        public DbSet<UserCheckin> UserCheckins { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer
