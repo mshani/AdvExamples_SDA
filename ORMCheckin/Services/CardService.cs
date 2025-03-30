@@ -1,4 +1,5 @@
-﻿using ORMCheckin.Models;
+﻿using Microsoft.EntityFrameworkCore.Query;
+using ORMCheckin.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,13 +27,13 @@ namespace ORMCheckin.Services
             return result;
         }
 
-        public Card Create(string firstName, string lastName, DateTime issuedDate) {
+        public Card Create(Card card) {
 
             var newItem = new Card()
             {
-                FirstName = firstName,
-                LastName = lastName,
-                IssuedDate = issuedDate,
+                FirstName = card.FirstName,
+                LastName = card.LastName,
+                IssuedDate = DateTime.Now,
             };
             _context.Cards.Add(newItem);
             _context.SaveChanges();
@@ -67,6 +68,14 @@ namespace ORMCheckin.Services
                 return result > 0 ? true : false;
             }
             return false;
+        }
+
+        public void Print(Card card) {        
+            Console.WriteLine($"{card.Id} | {card.FirstName} {card.LastName} | {card.IssuedDate.Date} {card.DeactivationDate?.Date}");
+        }
+
+        public void Print(List<Card> cards) { 
+            foreach(Card card in cards) { Print(card); }
         }
     }
 }

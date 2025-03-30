@@ -1,17 +1,35 @@
-﻿using ORMCheckin.Services;
+﻿using ORMCheckin;
+using ORMCheckin.Services;
 
+Menu.PrintMenu();
 var cardService = new CardService();
 
-//var newCard = cardService.Create("Emma", "Cooper", DateTime.Now);
-//var removed = cardService.Delete(6);
-
-var updated = cardService.Update(5, lastName:"Cooper", deactivationDate: DateTime.Now);
-
-var cardList = cardService.GetAll();
-foreach (var item in cardList)
+var value = Console.ReadLine();
+switch (value)
 {
-    Console.WriteLine($"{item.Id} | {item.FirstName} {item.LastName} | {item.IssuedDate}  {item.DeactivationDate}");
+    case ("x"):
+    case ("X"):
+        return;
+    case ("1"):
+        var cardId = Menu.PrintGetCardById();
+        var item = cardService.GetById(cardId);
+        cardService.Print(item);
+        break;
+    case ("2"):
+        Menu.PrintGetAllCards();
+        var items = cardService.GetAll();
+        cardService.Print(items);
+        break;
+    case ("3"):
+        var cardToCreate = Menu.PrintCreateCard();
+        var createdCard = cardService.Create(cardToCreate);
+        cardService.Print(createdCard);
+        break;
+    case ("5"):
+        var cardIdToDelete = Menu.PrintDeleteCardById();
+        var deleteResult = cardService.Delete(cardIdToDelete);        
+        break;
+    default:
+        Console.WriteLine("Invalid option");
+        break;
 }
-
-//var card = cardService.GetById(2);
-//Console.WriteLine($"{card.Id} | {card.FirstName} {card.LastName} | {card.IssuedDate}  {card.DeactivationDate}");
