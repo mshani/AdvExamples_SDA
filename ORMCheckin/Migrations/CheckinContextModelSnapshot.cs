@@ -49,7 +49,7 @@ namespace ORMCheckin.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cards");
+                    b.ToTable("Cards", (string)null);
                 });
 
             modelBuilder.Entity("ORMCheckin.Models.UserCheckin", b =>
@@ -75,23 +75,18 @@ namespace ORMCheckin.Migrations
 
                     b.HasIndex("CardId");
 
-                    b.ToTable("UserCheckins");
+                    b.ToTable("UserCheckins", (string)null);
                 });
 
             modelBuilder.Entity("ORMCheckin.Models.UserCheckin", b =>
                 {
                     b.HasOne("ORMCheckin.Models.Card", "Card")
-                        .WithMany("UserCheckins")
+                        .WithMany()
                         .HasForeignKey("CardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Card");
-                });
-
-            modelBuilder.Entity("ORMCheckin.Models.Card", b =>
-                {
-                    b.Navigation("UserCheckins");
                 });
 #pragma warning restore 612, 618
         }

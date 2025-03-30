@@ -11,6 +11,10 @@ namespace ORMCheckin
             Console.WriteLine("Shtypni 3 per te shtuar nje karte");
             Console.WriteLine("Shtypni 4 per te modifikuar nje karte");
             Console.WriteLine("Shtypni 5 per te fshire nje karte");
+            Console.WriteLine("Shtypni 6 per te afishuar userCheckins sipas userId");
+            Console.WriteLine("Shtypni 7 per te shtuar nje userCheckin");
+            Console.WriteLine("Shtypni 8 per te modifikuar nje userCheckin");
+            Console.WriteLine("Shtypni 9 per te fshire nje userCheckin");
             Console.WriteLine("Shtypni x per te dale");
         }
 
