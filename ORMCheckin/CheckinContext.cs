@@ -12,5 +12,11 @@ namespace ORMCheckin
             optionsBuilder.UseSqlServer
                 (@"Server=MARSELA-ASYSTEM\SQLEXPRESS;Database=Checkin;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
         }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Card>()
+                .HasIndex(u => u.Code)
+                .IsUnique();
+        }
     }
 }

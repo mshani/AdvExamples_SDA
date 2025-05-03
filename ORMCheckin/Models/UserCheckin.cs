@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ORMCheckin.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,3 +24,13 @@ namespace ORMCheckin.Models
         public string Action { get; set; }
     }
 }
+
+//Student
+//public int? DormitoryId { get; set; }
+//[ForeignKey("DormitoryId")]
+//public Dormitory Dormitory { get; set; }
+
+//Dormitory
+//public IEnumerable<Student> Students { get; set; }
+
+//Ti shtoni nje studenti dhomen e tij duke kontrolluar maxCapacity

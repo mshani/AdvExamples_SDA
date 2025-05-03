@@ -6,6 +6,8 @@ namespace ORMCheckin.Models
     {
         [Key]
         public int Id { get; set; }
+        [StringLength(5)]
+        public string Code { get; set; }
         [StringLength(100)]
         public string FirstName { get; set; }
         [StringLength(100)]
