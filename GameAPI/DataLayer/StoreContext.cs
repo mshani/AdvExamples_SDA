@@ -6,6 +6,7 @@ namespace GameAPI.DataLayer
     public class StoreContext : DbContext
     {
         public DbSet<VideoGame> VideoGames { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
 
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         { }

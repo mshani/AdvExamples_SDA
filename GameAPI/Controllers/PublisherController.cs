@@ -2,23 +2,16 @@
 using GameAPI.DataLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GameAPI.Controllers
+namespace PublisherAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class GameController : ControllerBase
+    public class PublisherController : ControllerBase
     {
-        private readonly IVideoGameService _videoGameService;
-        public GameController(IVideoGameService videoGameService)
+        private readonly IPublisherService _publisherService;
+        public PublisherController(IPublisherService publisherService)
         {
-            _videoGameService = videoGameService;
-        }
-
-        [HttpGet("welcome")]
-        public IActionResult Welcome([FromQuery] string? name, [FromQuery] string? lastName)
-        {
-            var message = $"Welcome back {name} {lastName} to Game API";
-            return new OkObjectResult(message);
+            _publisherService = publisherService;
         }
 
         [HttpGet]
@@ -26,7 +19,7 @@ namespace GameAPI.Controllers
         {
             try
             {
-                var data = _videoGameService.GetAll();
+                var data = _publisherService.GetAll();
                 return new OkObjectResult(data);
             }
             catch (Exception ex)
@@ -40,7 +33,7 @@ namespace GameAPI.Controllers
         {
             try
             {
-                var data = _videoGameService.GetById(id);
+                var data = _publisherService.GetById(id);
                 return new OkObjectResult(data);
             }
             catch (Exception ex)
@@ -50,11 +43,11 @@ namespace GameAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] VideoGame videoGame)
+        public IActionResult Create([FromBody] Publisher publisher)
         {
             try
             {
-                var data = _videoGameService.Create(videoGame);
+                var data = _publisherService.Create(publisher);
                 return new OkObjectResult(data);
             }
             catch (Exception ex)
@@ -64,11 +57,11 @@ namespace GameAPI.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] VideoGame videoGame)
+        public IActionResult Update([FromBody] Publisher publisher)
         {
             try
             {
-                var data = _videoGameService.Update(videoGame);
+                var data = _publisherService.Update(publisher);
                 return new OkObjectResult(data);
             }
             catch (Exception ex)

@@ -16,10 +16,12 @@ namespace GameAPI.DataLayer.Models
         [MaxLength(100)]
         public string? Category { get; set; }
 
-        public DateTime? CreateTime { get; set; }
+        public DateTime? CreatedTime { get; set; }
         public DateTime? ModifiedTime { get; set; }
 
-        [MaxLength(255)]
-        public string? Publisher{ get; set; }
+        [ForeignKey(nameof(Publisher))]
+        public int? PublisherId { get; set; }
+
+        public Publisher? Publisher { get; set; }
     }
 }
