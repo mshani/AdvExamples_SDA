@@ -1,3 +1,5 @@
+using GameAPI.BusinessLayer.Infrastructure;
+using GameAPI.BusinessLayer.Services;
 using GameAPI.DataLayer;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +14,8 @@ builder.Services.AddDbContext<StoreContext>(x => x.UseSqlServer(connectionString
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddTransient<IVideoGameService, VideoGameService>();
 
 var app = builder.Build();
 
