@@ -8,5 +8,6 @@ namespace GameAPI.BusinessLayer.Infrastructure
         Publisher? GetById(int id);
         Publisher Create(Publisher videoGame);
         Publisher? Update(Publisher videoGame);
+        bool Delete(int id, bool? forceDeleteChildren);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GameAPI.BusinessLayer.Infrastructure;
+using GameAPI.BusinessLayer.Services;
 using GameAPI.DataLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -62,6 +63,20 @@ namespace PublisherAPI.Controllers
             try
             {
                 var data = _publisherService.Update(publisher);
+                return new OkObjectResult(data);
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id, [FromQuery] bool? forceDeleteChildren)
+        {
+            try
+            {
+                var data = _publisherService.Delete(id, forceDeleteChildren);
                 return new OkObjectResult(data);
             }
             catch (Exception ex)

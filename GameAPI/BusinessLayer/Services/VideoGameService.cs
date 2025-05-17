@@ -52,5 +52,17 @@ namespace GameAPI.BusinessLayer.Services
             else
                 return null;
         }
+
+        public bool Delete(int id)
+        {
+            var existing = _context.VideoGames.FirstOrDefault(x => x.Id == id);
+            if (existing != null)
+            {
+                _context.VideoGames.Remove(existing);
+                var result = _context.SaveChanges();
+                return result > 0 ? true : false;
+            }
+            return false;
+        }
     }
 }

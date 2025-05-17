@@ -8,5 +8,6 @@ namespace GameAPI.BusinessLayer.Infrastructure
         VideoGame? GetById(int id);
         VideoGame Create(VideoGame videoGame);
         VideoGame? Update(VideoGame videoGame);
+        bool Delete(int id);
     }
 }

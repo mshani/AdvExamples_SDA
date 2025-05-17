@@ -76,5 +76,18 @@ namespace GameAPI.Controllers
                 return new BadRequestObjectResult(ex.Message);
             }
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id) {
+            try
+            {
+                var data = _videoGameService.Delete(id);
+                return new OkObjectResult(data);
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
+        }
     }
 }
