@@ -1,4 +1,6 @@
 ﻿using GameAPI.BusinessLayer.Infrastructure;
+using GameAPI.DataLayer.DTOs;
+using GameAPI.DataLayer.Filters;
 using GameAPI.DataLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,11 +24,11 @@ namespace GameAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery] VideoGameFilter filter)
         {
             try
             {
-                var data = _videoGameService.GetAll();
+                var data = _videoGameService.GetAll(filter);
                 return new OkObjectResult(data);
             }
             catch (Exception ex)
@@ -50,11 +52,11 @@ namespace GameAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] VideoGame videoGame)
+        public IActionResult Create([FromBody] VideoGameDTO payload)
         {
             try
             {
-                var data = _videoGameService.Create(videoGame);
+                var data = _videoGameService.Create(payload);
                 return new OkObjectResult(data);
             }
             catch (Exception ex)
@@ -63,12 +65,12 @@ namespace GameAPI.Controllers
             }
         }
 
-        [HttpPut]
-        public IActionResult Update([FromBody] VideoGame videoGame)
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] VideoGameDTO payload)
         {
             try
             {
-                var data = _videoGameService.Update(videoGame);
+                var data = _videoGameService.Update(id, payload);
                 return new OkObjectResult(data);
             }
             catch (Exception ex)

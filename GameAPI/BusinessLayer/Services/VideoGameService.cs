@@ -1,5 +1,7 @@
 ﻿using GameAPI.BusinessLayer.Infrastructure;
 using GameAPI.DataLayer;
+using GameAPI.DataLayer.DTOs;
+using GameAPI.DataLayer.Filters;
 using GameAPI.DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,9 +14,32 @@ namespace GameAPI.BusinessLayer.Services
             _context = context;
         }
 
-        public List<VideoGame> GetAll()
+        public List<VideoGame> GetAll(VideoGameFilter filter)
         {
-            var result = _context.VideoGames.ToList();
+            var query = _context.VideoGames.AsQueryable();
+            if (filter != null) {
+                if (filter.Id != null){
+                    query = query.Where(x => x.Id == filter.Id);
+                }
+                if (!string.IsNullOrEmpty(filter.Name)) { 
+                    query = query.Where(x => 
+                                    x.Name != null &&
+                                    x.Name.Contains(filter.Name));
+                }
+                if (filter.PublishingDate != null) {
+                    query = query.Where(x => 
+                                x.PublishingDate!= null  && 
+                                x.PublishingDate.Value.Date == filter.PublishingDate.Value.Date);
+                }
+                if (filter.SizeMin != null) { 
+                    query = query.Where(x => x.Size >= filter.SizeMin);           
+                }
+                if (filter.SizeMax != null)
+                {
+                    query = query.Where(x => x.Size <= filter.SizeMax);
+                }
+            }
+            var result = query.ToList();
             return result;
         }
 
@@ -26,24 +51,33 @@ namespace GameAPI.BusinessLayer.Services
             return result;
         }
 
-        public VideoGame Create(VideoGame videoGame) {
-            videoGame.Id = 0;
-            videoGame.ModifiedTime = null;
-            _context.VideoGames.Add(videoGame);
+        public VideoGame Create(VideoGameDTO payload) {
+            var toAdd = new VideoGame()
+            {
+                Name = payload.Name,
+                Size = payload.Size,
+                Category = payload.Category,
+                PublisherId = payload.PublisherId,
+                CreatedTime = DateTime.Now,
+                ModifiedTime = null,
+                PublishingDate = payload.PublishingDate
+            };
+            _context.VideoGames.Add(toAdd);
             _context.SaveChanges();
-            return videoGame;          
+            return toAdd;          
         }
 
-        public VideoGame? Update(VideoGame videoGame)
+        public VideoGame? Update(int id, VideoGameDTO payload)
         {
-            var existing = _context.VideoGames.FirstOrDefault(x => x.Id == videoGame.Id);
+            var existing = _context.VideoGames.FirstOrDefault(x => x.Id == id);
             if (existing != null)
             {
-                existing.Name = videoGame.Name;
-                existing.Category = videoGame.Category;
-                existing.Size = videoGame.Size;
-                existing.Publisher = videoGame.Publisher;
+                existing.Name = payload.Name;
+                existing.Category = payload.Category;
+                existing.Size = payload.Size;
+                existing.PublisherId = payload.PublisherId;
                 existing.ModifiedTime = DateTime.Now;
+                existing.PublishingDate = payload.PublishingDate;
 
                 _context.VideoGames.Update(existing);
                 _context.SaveChanges();

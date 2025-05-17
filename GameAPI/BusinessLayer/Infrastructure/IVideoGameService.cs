@@ -1,13 +1,15 @@
-﻿using GameAPI.DataLayer.Models;
+﻿using GameAPI.DataLayer.DTOs;
+using GameAPI.DataLayer.Filters;
+using GameAPI.DataLayer.Models;
 
 namespace GameAPI.BusinessLayer.Infrastructure
 {
     public interface IVideoGameService
     {
-        List<VideoGame> GetAll();
+        List<VideoGame> GetAll(VideoGameFilter filter);
         VideoGame? GetById(int id);
-        VideoGame Create(VideoGame videoGame);
-        VideoGame? Update(VideoGame videoGame);
+        VideoGame Create(VideoGameDTO payload);
+        VideoGame? Update(int id, VideoGameDTO payload);
         bool Delete(int id);
     }
 }

@@ -23,5 +23,6 @@ namespace GameAPI.DataLayer.Models
         public int? PublisherId { get; set; }
 
         public Publisher? Publisher { get; set; }
+        public DateTime? PublishingDate { get; set; }
     }
 }
