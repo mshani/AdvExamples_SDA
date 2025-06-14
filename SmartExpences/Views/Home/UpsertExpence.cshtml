@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Create/Update";
+}
+
+@model SmartExpences.Models.Expence
+
+<div class="text-center">
+    <h2>Create or Update an expence </h2>
+</div>
+
+<form>
+    <label>Expence Name</label>
+    <input type="number" class="form-control" asp-for="Id"/>
+    <label>Value</label>
+    <input type="number" class="form-control" asp-for="Value" step="0.01"/>
+    <label>Description</label>
+    <input type="text" class="form-control" asp-for="Description" />
+    <label>Date</label>
+    <input type="date" class="form-control" asp-for="ExpenceDate" />
+</form>
+    

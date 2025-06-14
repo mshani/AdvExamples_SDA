@@ -17,6 +17,15 @@ namespace SmartExpences.Controllers
         {
             return View();
         }
+        public IActionResult Overview()
+        {
+            return View();
+        }
+
+        public IActionResult UpsertExpence()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
