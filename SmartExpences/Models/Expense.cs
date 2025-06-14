@@ -1,6 +1,6 @@
 ﻿namespace SmartExpences.Models
 {
-    public class Expence
+    public class Expense
     {
         public int Id { get; set; }
         public decimal Value { get; set; }

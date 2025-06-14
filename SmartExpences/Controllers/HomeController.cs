@@ -22,7 +22,7 @@ namespace SmartExpences.Controllers
             return View();
         }
 
-        public IActionResult UpsertExpence()
+        public IActionResult UpsertExpense()
         {
             return View();
         }

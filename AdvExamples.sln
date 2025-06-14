@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ORMCheckin", "ORMCheckin\OR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAPI", "GameAPI\GameAPI.csproj", "{027D90C0-9EDD-4806-9AED-8B9C47F769E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartExpences", "SmartExpences\SmartExpences.csproj", "{92374761-E9B2-4D49-8140-01045F3B5158}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartExpenses", "SmartExpences\SmartExpenses.csproj", "{92374761-E9B2-4D49-8140-01045F3B5158}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
