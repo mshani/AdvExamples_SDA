@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SmartExpenses.Models;
+using SmartExpenses.Services;
+using SmartExpenses.Services.Infrastucture;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("AppDb");
 builder.Services.AddDbContext<SmartExpensesContext>(x => x.UseSqlServer(connectionString));
+builder.Services.AddTransient<IExpenseService, ExpenseService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
