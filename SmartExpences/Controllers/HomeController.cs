@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using SmartExpences.Models;
+using SmartExpenses.Models;
 using System.Diagnostics;
 
-namespace SmartExpences.Controllers
+namespace SmartExpenses.Controllers
 {
     public class HomeController : Controller
     {
