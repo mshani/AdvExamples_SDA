@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ORMCheckin", "ORMCheckin\OR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAPI", "GameAPI\GameAPI.csproj", "{027D90C0-9EDD-4806-9AED-8B9C47F769E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartExpences", "SmartExpences\SmartExpences.csproj", "{92374761-E9B2-4D49-8140-01045F3B5158}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{027D90C0-9EDD-4806-9AED-8B9C47F769E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{027D90C0-9EDD-4806-9AED-8B9C47F769E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{027D90C0-9EDD-4806-9AED-8B9C47F769E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92374761-E9B2-4D49-8140-01045F3B5158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92374761-E9B2-4D49-8140-01045F3B5158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92374761-E9B2-4D49-8140-01045F3B5158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92374761-E9B2-4D49-8140-01045F3B5158}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
