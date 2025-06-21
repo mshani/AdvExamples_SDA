@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Create/Update";
+    ViewData["Title"] = "Create/Update expense";
 }
 
 @model SmartExpenses.Models.Expense
@@ -8,7 +8,7 @@
     <h2>Create or Update an expence </h2>
 </div>
 
-<form asp-action="UpsertForm" asp-controller="Home">
+<form asp-action="Upsert" method="post">
     <label hidden>Id</label>
     <input hidden type="number" class="form-control" asp-for="Id"/>
     <label>Value</label>

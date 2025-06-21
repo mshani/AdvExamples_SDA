@@ -5,6 +5,7 @@ namespace SmartExpenses.Models
     public class SmartExpensesContext : DbContext
     {
         public DbSet<Expense> Expenses { get; set; }
+        public DbSet<Incoming> Incomings { get; set; }
 
         public SmartExpensesContext(DbContextOptions<SmartExpensesContext> options) : base(options)
         { }

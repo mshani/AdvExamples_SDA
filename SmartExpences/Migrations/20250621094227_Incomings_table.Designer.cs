@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartExpenses.Models;
 
@@ -11,9 +12,11 @@ using SmartExpenses.Models;
 namespace SmartExpenses.Migrations
 {
     [DbContext(typeof(SmartExpensesContext))]
-    partial class SmartExpensesContextModelSnapshot : ModelSnapshot
+    [Migration("20250621094227_Incomings_table")]
+    partial class Incomings_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

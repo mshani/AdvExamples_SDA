@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Delete";
+}
+
+@model SmartExpenses.Models.Expense
+<div class="text-center">
+    <h3>Are you sure you want to delete?</h3>
+    <label>Description:</label>
+    <label>@Model.Description</label>
+    <br />
+    <label>Value ALL:</label>
+    <label>@Model.Value</label>
+
+    <form asp-action="Delete" method="post">
+        <input hidden type="number" class="form-control" asp-for="Id" />
+        <input class="btn btn-primary" type="submit" value="Confirm" />
+        <a class="btn btn-secondary" asp-action="Overview">Cancel </a>
+    </form>
+</div>

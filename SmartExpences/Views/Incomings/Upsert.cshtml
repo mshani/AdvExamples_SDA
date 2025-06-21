@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Create/Update expense";
+}
+
+@model SmartExpenses.Models.Incoming
+
+<div class="text-center">
+    <h2>Create or update an incoming </h2>
+</div>
+
+<form asp-action="Upsert" asp-controller="Incomings" method="post">
+    <label hidden>Id</label>
+    <input hidden type="number" class="form-control" asp-for="Id" />
+    <label>Value</label>
+    <input type="number" class="form-control" asp-for="Value" step="0.01" />
+    <label>Description</label>
+    <input type="text" class="form-control" asp-for="Description" />
+    <label>Date</label>
+    <input type="date" class="form-control" asp-for="ExpenseDate" />
+    <input class="btn btn-primary" type="submit" value="Save" />
+</form>
