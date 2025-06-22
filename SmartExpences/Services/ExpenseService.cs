@@ -7,7 +7,6 @@ namespace SmartExpenses.Services
     public class ExpenseService : IExpenseService
     {
         private readonly SmartExpensesContext _context;
-
         public ExpenseService(SmartExpensesContext context)
         {
             _context = context;

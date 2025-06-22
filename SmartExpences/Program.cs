@@ -11,6 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString("AppDb");
 builder.Services.AddDbContext<SmartExpensesContext>(x => x.UseSqlServer(connectionString));
 builder.Services.AddTransient<IExpenseService, ExpenseService>();
 builder.Services.AddTransient<IIncomingService, IncomingService>();
+builder.Services.AddTransient<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 

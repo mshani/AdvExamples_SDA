@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SmartExpenses.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace SmartExpenses.Models
 {
@@ -11,5 +12,6 @@ namespace SmartExpenses.Models
         public string Name { get; set; } = null!;
         [MaxLength(500)]
         public string? Description { get; set; }
+        public CategoryTypeEnum? CategoryType { get; set; }
     }
 }
