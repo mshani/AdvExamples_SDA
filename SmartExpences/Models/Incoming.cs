@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmartExpenses.Models
 {
-    public class Incoming
+    public class Incoming : BaseModel
     {
         [Key]
         public int Id { get; set; }
@@ -13,7 +13,5 @@ namespace SmartExpenses.Models
         [MaxLength(500)]
         public string? Description { get; set; }
         public DateTime ExpenseDate { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public DateTime? ModifiedOn { get; set; }
     }
 }
