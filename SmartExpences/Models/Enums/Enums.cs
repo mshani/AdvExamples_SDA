@@ -9,6 +9,6 @@ namespace SmartExpenses.Models.Enums
         Expense = 1,
 
         [Display(Name = "Incoming")]
-        Incoming = 2
+        Incoming = 2,
     }
 }

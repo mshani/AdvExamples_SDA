@@ -15,6 +15,7 @@
                 <th>Value</th>
                 <th>Description</th>
                 <th>Date</th>
+                <th>Category</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -26,6 +27,7 @@
                     <td>@expense.Value.ToString("N2")</td>
                     <td>@expense.Description</td>
                     <td>@expense.ExpenseDate.ToShortDateString()</td>
+                    <td>@expense.Category?.Name</td>
                     <td>
                         <a class="btn btn-warning" asp-action="Upsert" asp-route-id="@expense.Id">Edit</a>
                         <a class="btn btn-danger" asp-action="Delete" asp-route-id="@expense.Id">Delete</a>

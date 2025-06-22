@@ -14,12 +14,14 @@ namespace SmartExpenses.Services
 
         public async Task<IEnumerable<Expense>> GetAllExpensesAsync()
         {
-            return await _context.Expenses.ToListAsync();
+            return await _context.Expenses.Include(x => x.Category).ToListAsync();
         }
 
         public async Task<Expense> GetExpenseByIdAsync(int id)
         {
-            var expense = await _context.Expenses.FindAsync(id);
+            var expense = await _context.Expenses
+                .Include(x => x.Category)
+                .FirstOrDefaultAsync(x => x.Id == id);
             if (expense == null)
             {
                 throw new InvalidOperationException($"Expense with ID {id} not found.");
@@ -41,6 +43,7 @@ namespace SmartExpenses.Services
             {
                 existing.Value = payload.Value;
                 existing.Description = payload.Description;
+                existing.CategoryId = payload.CategoryId;
                 existing.ExpenseDate = payload.ExpenseDate;
                 existing.ModifiedOn = DateTime.UtcNow;
                 await _context.SaveChangesAsync();

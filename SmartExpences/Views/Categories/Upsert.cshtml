@@ -16,9 +16,17 @@
     <input type="text" class="form-control" asp-for="Name" />
     <label>Description</label>
     <input type="text" class="form-control" asp-for="Description" />
+
+
     <label>Category</label>
-    <select required class="form-control" asp-for="CategoryType" asp-items="Html.GetEnumSelectList<CategoryTypeEnum>()">
+    <select required class="form-control" 
+        asp-for="CategoryType" asp-items="Html.GetEnumSelectList<CategoryTypeEnum>()">
         <option selected="selected" value="">Please select</option>
     </select>
+    <label>Is Active?</label>
+    <input type="checkbox" asp-for="IsActive"/>
+    <br />
+
+
     <input  class="btn btn-primary" type="submit" value="Save"/>
 </form>

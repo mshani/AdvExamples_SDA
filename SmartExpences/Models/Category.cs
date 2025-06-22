@@ -13,5 +13,7 @@ namespace SmartExpenses.Models
         [MaxLength(500)]
         public string? Description { get; set; }
         public CategoryTypeEnum? CategoryType { get; set; }
+        [Required]
+        public bool IsActive { get; set; } = true;
     }
 }

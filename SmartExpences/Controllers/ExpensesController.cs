@@ -1,16 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SmartExpenses.Models;
-using SmartExpenses.Services;
 using SmartExpenses.Services.Infrastucture;
+using System.Collections.Generic;
 
 namespace SmartExpenses.Controllers
 {
     public class ExpensesController : Controller
     {
         private readonly IExpenseService _expenseService;
-        public ExpensesController(IExpenseService expenseService)
+        private readonly ICategoryService _categoryService;
+        public ExpensesController(
+            IExpenseService expenseService, 
+            ICategoryService categoryService)
         {
             _expenseService = expenseService;
+            _categoryService = categoryService;
         }
         public async Task<IActionResult> Overview()
         {
@@ -20,6 +25,10 @@ namespace SmartExpenses.Controllers
 
         public async Task<IActionResult> Upsert(int? id)
         {
+
+            var categories = await _categoryService.GetAllAsync();
+            ViewBag.Categories = categories;
+
             if (id != null)
             {
                 var expense = await _expenseService.GetExpenseByIdAsync(id.Value);

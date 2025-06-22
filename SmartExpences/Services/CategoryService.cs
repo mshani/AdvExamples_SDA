@@ -42,6 +42,7 @@ namespace SmartExpenses.Services
                 existing.Name = payload.Name;
                 existing.Description = payload.Description;
                 existing.CategoryType = payload.CategoryType;
+                existing.IsActive = payload.IsActive;
                 existing.ModifiedOn = DateTime.UtcNow;
                 await _context.SaveChangesAsync();
             }
