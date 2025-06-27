@@ -11,9 +11,15 @@ namespace SmartExpenses.Services
         {
             _context = context;
         }
-        public async Task<IEnumerable<Incoming>> GetAllIncomingsAsync()
+        public async Task<IEnumerable<Incoming>> GetAllIncomingsAsync(int? categoryId = null)
         {
-            return await _context.Incomings.Include(x => x.Category).ToListAsync();
+            var query = _context.Incomings.Include(x => x.Category).AsQueryable();
+            if (categoryId.HasValue)
+            {
+                query = query.Where(x => x.CategoryId == categoryId.Value);
+            }
+            var data = await query.ToListAsync();
+            return data;
         }
         public async Task<Incoming> GetIncomingByIdAsync(int id)
         {

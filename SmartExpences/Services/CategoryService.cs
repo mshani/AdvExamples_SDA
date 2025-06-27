@@ -13,17 +13,19 @@ namespace SmartExpenses.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<Category>> GetAllAsync()
+        public async Task<IEnumerable<Category>> GetAllAsync(CategoryTypeEnum? categoryType = null, bool? isActive = null)
         {
-            return await _context.Categories.ToListAsync();
-        }
-
-        public async Task<IEnumerable<Category>> GetByType(CategoryTypeEnum categoryType)
-        {
-            return await _context.Categories
-                .Where(x => x.CategoryType == categoryType)
-                .Where(x => x.IsActive == true)
-                .ToListAsync();
+            var query = _context.Categories.AsQueryable();
+            if (categoryType != null)
+            {
+                query = query.Where(x => x.CategoryType == categoryType);
+            }
+            if (isActive != null)
+            {
+                query = query.Where(x => x.IsActive == true);
+            }
+            var data = await query.ToListAsync();
+            return data;
         }
 
         public async Task<Category> GetByIdAsync(int id)

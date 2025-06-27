@@ -18,15 +18,17 @@ namespace SmartExpenses.Controllers
             _categoryService = categoryService;
         }
 
-        public async Task<IActionResult> Overview()
+        public async Task<IActionResult> Overview(int? categoryId)
         {
-            var data = await _incomingService.GetAllIncomingsAsync();
+            var categories = await _categoryService.GetAllAsync(CategoryTypeEnum.Incoming);
+            ViewData["Categories"] = new SelectList(categories, "Id", "Name");
+            var data = await _incomingService.GetAllIncomingsAsync(categoryId);
             return View(data);
         }
 
         public async Task<IActionResult> Upsert(int? id)
         {
-            var categories = await _categoryService.GetByType(CategoryTypeEnum.Incoming);
+            var categories = await _categoryService.GetAllAsync(CategoryTypeEnum.Incoming, true);
             ViewData["Categories"] = new SelectList(categories, "Id", "Name");
             if (id != null)
             {

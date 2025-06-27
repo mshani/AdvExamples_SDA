@@ -1,4 +1,4 @@
-﻿@{
+﻿    @{
     ViewData["Title"] = "Incomings";
 }
 @model List<Incoming>
@@ -8,8 +8,16 @@
     <hr />
     <div class="row">
         <div class="col d-flex justify-content-between">
-            <h3 class="tbtn btn-secondary mx-auto" style="margin:auto">ALL @Model.Sum(x => x.Value) </h3>
-            <a class="btn btn-primary float-right" asp-controller="Incomings" asp-action="Upsert">New</a>
+            <form class="col-4" asp-action="Overview" asp-controller="Incomings" method="get">
+                <select class="form-control w-50" style="display: inline-block" asp-items="ViewBag.Categories" name="categoryId">
+                    <option selected="selected" value="">Select Category</option>
+                </select>
+                <input class="btn btn-primary" style="display: inline-block" type="submit" value="Search" />
+            </form>
+            <h3 class="tbtn btn-secondary col-4 mx-auto" style="margin:auto">ALL @Model.Sum(x => x.Value) </h3>
+            <div class="col-4 float-right">
+                <a class="btn btn-primary " asp-controller="Incomings" asp-action="Upsert">New</a>
+            </div>
         </div>
 
     </div>

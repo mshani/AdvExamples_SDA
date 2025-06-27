@@ -7,6 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(); builder.Services.AddSwaggerGen();
+
 var connectionString = builder.Configuration.GetConnectionString("AppDb");
 builder.Services.AddDbContext<SmartExpensesContext>(x => x.UseSqlServer(connectionString));
 builder.Services.AddTransient<IExpenseService, ExpenseService>();
@@ -29,6 +35,13 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.MapControllerRoute(
     name: "default",
