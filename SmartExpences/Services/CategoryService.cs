@@ -1,6 +1,7 @@
 ﻿using SmartExpenses.Services.Infrastucture;
 using SmartExpenses.Models;
 using Microsoft.EntityFrameworkCore;
+using SmartExpenses.Models.Enums;
 
 namespace SmartExpenses.Services
 {
@@ -15,6 +16,14 @@ namespace SmartExpenses.Services
         public async Task<IEnumerable<Category>> GetAllAsync()
         {
             return await _context.Categories.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Category>> GetByType(CategoryTypeEnum categoryType)
+        {
+            return await _context.Categories
+                .Where(x => x.CategoryType == categoryType)
+                .Where(x => x.IsActive == true)
+                .ToListAsync();
         }
 
         public async Task<Category> GetByIdAsync(int id)

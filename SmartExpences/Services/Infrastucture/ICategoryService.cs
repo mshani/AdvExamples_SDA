@@ -1,4 +1,5 @@
 ﻿using SmartExpenses.Models;
+using SmartExpenses.Models.Enums;
 
 namespace SmartExpenses.Services.Infrastucture
 {
@@ -9,5 +10,6 @@ namespace SmartExpenses.Services.Infrastucture
         Task CreateAsync(Category payload);
         Task UpdateAsync(Category payload);
         Task DeleteAsync(int id);
+        Task<IEnumerable<Category>> GetByType(CategoryTypeEnum categoryType);
     }
 }

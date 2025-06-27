@@ -27,7 +27,7 @@ namespace SmartExpenses.Controllers
         {
 
             var categories = await _categoryService.GetAllAsync();
-            ViewBag.Categories = categories;
+            ViewData["Categories"] = new SelectList(categories, "Id", "Name");
 
             if (id != null)
             {

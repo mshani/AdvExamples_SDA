@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SmartExpenses.Models;
+using SmartExpenses.Models.Enums;
 using SmartExpenses.Services;
 using SmartExpenses.Services.Infrastucture;
 
@@ -8,9 +10,12 @@ namespace SmartExpenses.Controllers
     public class IncomingsController : Controller
     {
         private readonly IIncomingService _incomingService;
-        public IncomingsController(IIncomingService incomingService)
+        private readonly ICategoryService _categoryService;
+
+        public IncomingsController(IIncomingService incomingService, ICategoryService categoryService)
         {
             _incomingService = incomingService;
+            _categoryService = categoryService;
         }
 
         public async Task<IActionResult> Overview()
@@ -21,6 +26,8 @@ namespace SmartExpenses.Controllers
 
         public async Task<IActionResult> Upsert(int? id)
         {
+            var categories = await _categoryService.GetByType(CategoryTypeEnum.Incoming);
+            ViewData["Categories"] = new SelectList(categories, "Id", "Name");
             if (id != null)
             {
                 var data = await _incomingService.GetIncomingByIdAsync(id.Value);

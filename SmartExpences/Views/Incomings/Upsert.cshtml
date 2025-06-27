@@ -17,5 +17,9 @@
     <input type="text" class="form-control" asp-for="Description" />
     <label>Date</label>
     <input type="date" class="form-control" asp-for="ExpenseDate" />
+    <label>Category</label>
+    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories">
+        <option selected="selected" value="">Please select</option>
+    </select>
     <input class="btn btn-primary" type="submit" value="Save" />
 </form>

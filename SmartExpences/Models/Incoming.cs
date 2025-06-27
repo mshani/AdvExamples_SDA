@@ -13,5 +13,8 @@ namespace SmartExpenses.Models
         [MaxLength(500)]
         public string? Description { get; set; }
         public DateTime ExpenseDate { get; set; }
+        public int? CategoryId { get; set; }
+        [ForeignKey("CategoryId")]
+        public Category? Category { get; set; }
     }
 }

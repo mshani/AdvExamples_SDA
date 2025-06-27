@@ -6,7 +6,13 @@
 <div class="text-center">
     <h3 class="text-center">Incomings Overview</h3>
     <hr />
-    <a class="btn btn-primary" asp-controller="Incomings" asp-action="Upsert">New</a>
+    <div class="row">
+        <div class="col d-flex justify-content-between">
+            <h3 class="tbtn btn-secondary mx-auto" style="margin:auto">ALL @Model.Sum(x => x.Value) </h3>
+            <a class="btn btn-primary float-right" asp-controller="Incomings" asp-action="Upsert">New</a>
+        </div>
+
+    </div>
     <br />
     <hr />
     <table class="table">
@@ -16,6 +22,7 @@
                 <th>Value</th>
                 <th>Description</th>
                 <th>Date</th>
+                <th>Category</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -27,6 +34,7 @@
                     <td>@item.Value.ToString("N2")</td>
                     <td>@item.Description</td>
                     <td>@item.ExpenseDate.ToShortDateString()</td>
+                    <td>@item.Category?.Name</td>
                     <td>
                         <a class="btn btn-warning" asp-action="Upsert" asp-route-id="@item.Id">Edit</a>
                         <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>

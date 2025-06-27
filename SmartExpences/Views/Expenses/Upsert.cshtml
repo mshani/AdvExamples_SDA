@@ -20,11 +20,8 @@
     <label>Date</label>
     <input type="date" class="form-control" asp-for="ExpenseDate" />
     <label>Category</label>
-    <select asp-for="CategoryId" class="form-control">
-        @foreach (var element in ViewBag.Categories)
-        {
-            <option value="@element.Id">@element.Name</option>
-        }
+    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories">
+        <option selected="selected" value="">Please select</option>
     </select>
 
     <input  class="btn btn-primary" type="submit" value="Save"/>
