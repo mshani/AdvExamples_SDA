@@ -4,8 +4,47 @@
 
 <div class="text-center">
     <h3 class="display-4">Smart Expenses</h3>
-    <hr class="my-4" />
-    <h4>Expenses: <span>ALL @ViewData["Expenses"]</span></h4>
-    <h4>Incomings: <span>ALL @ViewBag.Incomings</span></h4>
-    <h4>Balance: <span>ALL @((decimal)ViewBag.Incomings - (decimal)ViewBag.Expenses)</span></h4>
+    <br>
+    <div class="row">
+        <div class="col-8 mx-auto">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            <h4>Balance</h4>
+                        </th>
+                        <th>
+                            <h4><span>ALL @((decimal)ViewBag.Incomings - (decimal)ViewBag.Expenses)</span></h4>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                        Expenses
+                    </td>
+                    <td>
+                        <span>ALL @ViewData["Expenses"]</span>
+                    </td>
+                    <td>
+                        <a asp-controller="Expenses" asp-action="Overview" class="btn btn-outline-primary"><i class="fa fa-th-list"></i> View </a>
+                        <a asp-controller="Expenses" asp-action="Upsert" class="btn btn-outline-success"><i class="fa fa-plus"></i> Add </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Incomings
+                    </td>
+                    <td>
+                        <span>ALL @ViewBag.Incomings</span>
+                    </td>
+                    <td>
+                        <a asp-controller="Incomings" asp-action="Overview" class="btn btn-outline-primary"><i class="fa fa-th-list"></i> View </a>
+                        <a asp-controller="Incomings" asp-action="Upsert" class="btn btn-outline-success"><i class="fa fa-plus"></i> Add </a>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
 </div>
