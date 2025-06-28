@@ -4,7 +4,7 @@ namespace SmartExpenses.Services.Infrastucture
 {
     public interface IExpenseService
     {
-        Task<IEnumerable<Expense>> GetAllExpensesAsync();
+        Task<IEnumerable<Expense>> GetAllExpensesAsync(int? categoryId = null);
         Task<Expense> GetExpenseByIdAsync(int id);
         Task CreateExpenseAsync(Expense payload);
         Task UpdateExpenseAsync(Expense payload);

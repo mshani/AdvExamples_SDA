@@ -1,11 +1,28 @@
-﻿@{
+﻿@using SmartExpenses.ViewModels.Expenses
+@{
     ViewData["Title"] = "Overview";
 }
-@model List<Expense>
+@model ExpensesOverviewVM
 <div class="text-center">
     <h3>Expenses</h3>
     <hr />
-    <a class="btn btn-primary" asp-controller="Expenses" asp-action="Upsert">New</a>
+    <div class="row">
+        <div class="col d-flex justify-content-between">
+            <form class="col-4" asp-action="Overview" asp-controller="Expenses" method="get">
+                <select asp-for="SelectedCategory.Id" asp-items="@Model?.CategoryListItems" name="categoryId" class="form-control w-50" style="display: inline-block">
+                    <option selected="selected" value="">Select Category</option>
+                </select>
+                <input class="btn btn-primary" style="display: inline-block" type="submit" value="Search" />
+            </form>
+            <h3 class="col-4 mx-auto" style="margin:auto">
+                <i class="fa fa-money"></i> 
+                ALL @Model.Expenses?.Sum(x => x.Value) 
+            </h3>
+            <div class="col-4 float-right">
+                <a class="btn btn-primary" asp-controller="Expenses" asp-action="Upsert">New</a>
+            </div>
+        </div>
+    </div>
     <hr />
     <br />
     <table class="table">
@@ -20,17 +37,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var expense in Model)
+            @foreach (var expense in Model.Expenses ?? [])
             {
                 <tr>
                     <td>@expense.Id</td>
                     <td>@expense.Value.ToString("N2")</td>
                     <td>@expense.Description</td>
                     <td>@expense.ExpenseDate.ToShortDateString()</td>
-                    <td>@expense.Category?.Name</td>
+                    <td><a asp-controller="Categories" asp-action="Upsert" asp-route-id="@expense.Category?.Id">
+                        @expense.Category?.Name
+                        </a> 
+                    </td>
                     <td>
-                        <a class="btn btn-warning" asp-action="Upsert" asp-route-id="@expense.Id">Edit</a>
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@expense.Id">Delete</a>
+                        <a class="btn btn-outline-warning" asp-action="Upsert" asp-route-id="@expense.Id"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@expense.Id"><i class="fa fa-close"></i></a>
                     </td>
                 </tr>
             }
