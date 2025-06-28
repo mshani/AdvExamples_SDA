@@ -4,6 +4,7 @@ using SmartExpenses.Models;
 using SmartExpenses.Models.Enums;
 using SmartExpenses.Services;
 using SmartExpenses.Services.Infrastucture;
+using SmartExpenses.ViewModels.Incomings;
 
 namespace SmartExpenses.Controllers
 {
@@ -21,9 +22,16 @@ namespace SmartExpenses.Controllers
         public async Task<IActionResult> Overview(int? categoryId)
         {
             var categories = await _categoryService.GetAllAsync(CategoryTypeEnum.Incoming);
+
             ViewData["Categories"] = new SelectList(categories, "Id", "Name");
             var data = await _incomingService.GetAllIncomingsAsync(categoryId);
-            return View(data);
+            var userData = new IncomingOverviewVM
+            {
+                Incomings = data.ToList(),
+                Categories = categories.ToList(),
+                SelectedCategory = categoryId.HasValue ? categories.FirstOrDefault(c => c.Id == categoryId.Value) : null
+            };
+            return View(userData);
         }
 
         public async Task<IActionResult> Upsert(int? id)
