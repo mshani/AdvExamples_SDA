@@ -21,7 +21,7 @@
     <hr/>
     <form id="filterform" asp-action="Overview" asp-controller="Expenses" method="get">
         <div class="row">
-            <div class="col-3">
+            <div class="col-2">
             <select id="CategoryId" asp-for="SelectedCategory.Id" asp-items="@Model?.CategoryListItems" name="categoryId" class="form-control mb-2">
                 <option selected="selected" value="">Select Category</option>
             </select>
@@ -29,8 +29,8 @@
             <div class="col-3"><input asp-for="DescriptionFilter" class="form-control" type="text" placeholder="decription"/></div>
             <div class="col-2"><input asp-for="ValueMinFilter" class="form-control" type="number" placeholder="value min" /></div>
             <div class="col-2"><input asp-for="ValueMaxFilter" class="form-control" type="text" placeholder="value max" /></div>
-            <div class="col-1"><input class="btn btn-primary form-control" type="submit" value="Search" /></div>      
-            <div class="col-1"> <button class="btn btn-outline-secondary form-control" id="btnClear" type="button">Clear</button></div>
+            <div class="col-2"><button id="btnSubmit" class="btn btn-primary form-control"/><i class="fa fa-search"></i> Search</button></div>
+            <div class="col-1"> <button class="btn btn-outline-secondary form-control" id="btnClear" type="button"><i class="fa fa-eraser"></i> Clear</button></div>
         </div>
     </form>
     <hr />
@@ -77,5 +77,8 @@
             $("#ValueMaxFilter").val("");
             $("#filterform").submit();
         });
+        $("#btnSubmit").click(function){
+            $("#filterform").submit();
+        }
     });
 </script>
