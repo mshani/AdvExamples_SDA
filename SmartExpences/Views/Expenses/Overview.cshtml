@@ -8,12 +8,7 @@
     <hr />
     <div class="row">
         <div class="col d-flex justify-content-between">
-            <form class="col-4" asp-action="Overview" asp-controller="Expenses" method="get">
-                <select asp-for="SelectedCategory.Id" asp-items="@Model?.CategoryListItems" name="categoryId" class="form-control w-50" style="display: inline-block">
-                    <option selected="selected" value="">Select Category</option>
-                </select>
-                <input class="btn btn-primary" style="display: inline-block" type="submit" value="Search" />
-            </form>
+            <div class="col-4"></div>
             <h3 class="col-4 mx-auto" style="margin:auto">
                 <i class="fa fa-money"></i> 
                 ALL @Model.Expenses?.Sum(x => x.Value) 
@@ -23,6 +18,21 @@
             </div>
         </div>
     </div>
+    <hr/>
+    <form id="filterform" asp-action="Overview" asp-controller="Expenses" method="get">
+        <div class="row">
+            <div class="col-3">
+            <select id="CategoryId" asp-for="SelectedCategory.Id" asp-items="@Model?.CategoryListItems" name="categoryId" class="form-control mb-2">
+                <option selected="selected" value="">Select Category</option>
+            </select>
+            </div>
+            <div class="col-3"><input asp-for="DescriptionFilter" class="form-control" type="text" placeholder="decription"/></div>
+            <div class="col-2"><input asp-for="ValueMinFilter" class="form-control" type="number" placeholder="value min" /></div>
+            <div class="col-2"><input asp-for="ValueMaxFilter" class="form-control" type="text" placeholder="value max" /></div>
+            <div class="col-1"><input class="btn btn-primary form-control" type="submit" value="Search" /></div>      
+            <div class="col-1"> <button class="btn btn-outline-secondary form-control" id="btnClear" type="button">Clear</button></div>
+        </div>
+    </form>
     <hr />
     <br />
     <table class="table">
@@ -57,3 +67,15 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $("#btnClear").click(function() {
+            $("#CategoryId").val("");
+            $("#DescriptionFilter").val("");
+            $("#ValueMinFilter").val("");
+            $("#ValueMaxFilter").val("");
+            $("#filterform").submit();
+        });
+    });
+</script>

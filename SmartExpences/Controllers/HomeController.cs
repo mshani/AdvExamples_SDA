@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartExpenses.Models;
 using SmartExpenses.Services.Infrastucture;
+using SmartExpenses.ViewModels.Home;
 using System.Diagnostics;
 
 namespace SmartExpenses.Controllers
@@ -18,11 +19,14 @@ namespace SmartExpenses.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var expenses = await _expenseService.GetAllExpensesAsync();
-            var incomings = await _incomingService.GetAllIncomingsAsync();
-            ViewData["Expenses"] = expenses.Sum(x => x.Value);
-            ViewData["Incomings"] = incomings.Sum(x => x.Value);
-            return View();
+            var expenses = await _expenseService.GetTotalAsync();
+            var incomings = await _incomingService.GetTotalAsync();
+            var data = new HomeIndexVM
+            {
+                ExpensesTotal = expenses,
+                IncomingsTotal = incomings
+            };
+            return View(data);
         }
 
         public IActionResult Privacy()

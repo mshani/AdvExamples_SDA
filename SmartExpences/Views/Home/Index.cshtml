@@ -2,6 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model SmartExpenses.ViewModels.Home.HomeIndexVM;
+
 <div class="text-center">
     <h3 class="display-4">Smart Expenses</h3>
     <br>
@@ -14,7 +16,7 @@
                             <h4>Balance</h4>
                         </th>
                         <th>
-                            <h4><span>ALL @((decimal)ViewBag.Incomings - (decimal)ViewBag.Expenses)</span></h4>
+                            <h4><span>ALL @(Model.IncomingsTotal - Model.ExpensesTotal)</span></h4>
                         </th>
                         <th></th>
                     </tr>
@@ -24,7 +26,7 @@
                         Expenses
                     </td>
                     <td>
-                        <span>ALL @ViewData["Expenses"]</span>
+                        <span>ALL @Model.ExpensesTotal</span>
                     </td>
                     <td>
                         <a asp-controller="Expenses" asp-action="Overview" class="btn btn-outline-primary"><i class="fa fa-th-list"></i> View </a>
@@ -36,8 +38,9 @@
                         Incomings
                     </td>
                     <td>
-                        <span>ALL @ViewBag.Incomings</span>
+                        <span>ALL @Model.IncomingsTotal</span>
                     </td>
+                    
                     <td>
                         <a asp-controller="Incomings" asp-action="Overview" class="btn btn-outline-primary"><i class="fa fa-th-list"></i> View </a>
                         <a asp-controller="Incomings" asp-action="Upsert" class="btn btn-outline-success"><i class="fa fa-plus"></i> Add </a>

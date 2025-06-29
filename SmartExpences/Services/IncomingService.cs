@@ -21,6 +21,12 @@ namespace SmartExpenses.Services
             var data = await query.ToListAsync();
             return data;
         }
+
+        public async Task<decimal> GetTotalAsync()
+        {
+            var result = await _context.Incomings.SumAsync(x => x.Value);
+            return result;
+        }
         public async Task<Incoming> GetIncomingByIdAsync(int id)
         {
             var incoming = await _context.Incomings.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);

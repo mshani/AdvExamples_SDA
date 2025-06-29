@@ -19,9 +19,13 @@ namespace SmartExpenses.Controllers
             _expenseService = expenseService;
             _categoryService = categoryService;
         }
-        public async Task<IActionResult> Overview(int? categoryId)
+        public async Task<IActionResult> Overview(
+            int? categoryId, 
+            string? descriptionFilter, 
+            decimal? valueMinFilter, 
+            decimal? valueMaxFilter)
         {
-            var expenses = await _expenseService.GetAllExpensesAsync(categoryId);
+            var expenses = await _expenseService.GetAllExpensesAsync(categoryId, descriptionFilter, valueMinFilter, valueMaxFilter);
             var categories = await _categoryService.GetAllAsync(CategoryTypeEnum.Expense);
             var data = new ExpensesOverviewVM()
             {
